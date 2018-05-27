@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import './TodoList.scss'
 import TodoItem from '../TodoItem/TodoItem'
+import TodoListFooter from '../TodoListFooter/TodoListFooter'
 
 class TodoList extends Component {
   state = {
-    todoList: []
+    todoList: [],
+    filterTag: 'all'
   }
   addTodo = (event) => {
     if (event.target.value.length && event.key === 'Enter') {
@@ -41,8 +43,31 @@ class TodoList extends Component {
     this.setState({todoList: list})
   }
 
+  handleFilter = (filterTag) => {
+    this.setState({filterTag: filterTag})
+  }
+
+  clearCompletedTodo = () => {
+    let updatedList = this.state.todoList.filter(todo => !todo.completed)
+    this.setState({todoList: updatedList})
+  }
+
   render () {
-    let todoItems = this.state.todoList.map(item => {
+    let filteredList = null
+    switch (this.state.filterTag) {
+      case 'all':
+        filteredList = [...this.state.todoList]
+        break
+      case 'active':
+        filteredList = this.state.todoList.filter(item => !item.completed)
+        break
+      case 'completed':
+        filteredList = this.state.todoList.filter(item => item.completed)
+        break
+      default:
+    }
+
+    let todoItems = filteredList.map(item => {
       return (
         <TodoItem
           key={item.id}
@@ -54,6 +79,19 @@ class TodoList extends Component {
         />
       )
     })
+    let itemsLeft = this.state.todoList.filter(todo => !todo.completed).length
+    let completedTodoLength = this.state.todoList.filter(todo => todo.completed).length
+    let showFooter = null
+    if (this.state.todoList.length) {
+      showFooter =
+        <TodoListFooter
+          itemsLeft={itemsLeft}
+          completedTodoLength={completedTodoLength}
+          filterTag={this.state.filterTag}
+          filter={this.handleFilter}
+          clearCompletedTodo={this.clearCompletedTodo}
+        />
+    }
     return (
       <div className='todo-list'>
         <div className='todo-list__title'>
@@ -61,6 +99,7 @@ class TodoList extends Component {
         </div>
         <input type='text' className='todo-list__input' onKeyPress={this.addTodo}/>
         {todoItems}
+        {showFooter}
       </div>
     )
   }

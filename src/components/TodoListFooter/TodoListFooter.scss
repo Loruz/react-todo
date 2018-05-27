@@ -1,0 +1,27 @@
+.todo-list__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  align-items: center;
+  button {
+    border: 1px solid #eccc68;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: all .3s;
+    outline: none;
+    cursor: pointer;
+    &:hover,
+    &.active {
+      background: #eccc68;
+      color: #fff;
+    }
+  }
+  button:not(:last-of-type) {
+    margin-right: 10px;
+  }
+}
+.todo-list__clear-completed {
+  border: none;
+  color:#2c3e50;
+  font-size: 14px;
+}
