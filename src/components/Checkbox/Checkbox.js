@@ -1,9 +1,10 @@
 import React from 'react'
 import './Checkbox.scss'
 
-const Checkbox = ({checked}) => (
+const Checkbox = ({checked, isChecked}) => (
   <label className="checkbox">
     <input
+      checked={isChecked}
       type="checkbox"
       onClick={checked}
     />

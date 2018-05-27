@@ -7,6 +7,7 @@ const TodoItem = ({checked, completed, deleted, text}) => {
     <div className='todo-item'>
       <Checkbox
         checked={checked}
+        isChecked={completed}
       />
       <div
         className={`todo-item__text ${completed ? 'completed': null}`}>
