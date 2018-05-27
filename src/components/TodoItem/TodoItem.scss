@@ -1,0 +1,33 @@
+.todo-item {
+  background: #7bed9f;
+  font-weight: 700;
+  border-radius: 3px;
+  width: 100%;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  &:hover &__delete {
+    opacity: 1;
+    pointer-events: initial;
+  }
+  &__text {
+    font-size: 22px;
+    color: #fff;
+    &.completed {
+      text-decoration: line-through;
+    }
+  }
+  &__delete {
+    margin-left: auto;
+    opacity: 0;
+    pointer-events: none;
+    border: 0;
+    background: transparent;
+    font-size: 20px;
+    color: #fff;
+    transition: all .3s;
+    outline: none;
+    cursor: pointer;
+  }
+}
