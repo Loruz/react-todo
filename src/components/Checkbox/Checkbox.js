@@ -4,7 +4,7 @@ import './Checkbox.scss'
 const Checkbox = ({checked, isChecked}) => (
   <label className="checkbox">
     <input
-      checked={isChecked}
+      defaultChecked={isChecked}
       type="checkbox"
       onClick={checked}
     />
