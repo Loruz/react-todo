@@ -2,17 +2,17 @@ import React from 'react'
 import './TodoItem.scss'
 import Checkbox from '../Checkbox/Checkbox'
 
-const TodoItem = (props) => {
+const TodoItem = ({checked, completed, deleted, text}) => {
   return (
     <div className='todo-item'>
       <Checkbox
-        checked={props.checked}
+        checked={checked}
       />
       <div
-        className={`todo-item__text ${props.completed ? 'completed': null}`}>
-        {props.text}
+        className={`todo-item__text ${completed ? 'completed': null}`}>
+        {text}
         </div>
-      <button className="todo-item__delete" onClick={props.deleted}>X</button>
+      <button className="todo-item__delete" onClick={deleted}>X</button>
     </div>
   )
 }
